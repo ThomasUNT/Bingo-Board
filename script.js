@@ -24,13 +24,14 @@ const POINTS_PER_SQUARE = 1; // Easily adjust point values here
 // Exactly 49 tasks for a 7x7 grid. 
 // They render Left -> Right, Top -> Bottom.
 const tasks = [
-    "Clear any level in any game while one player controls the keyboard and another controls the mouse", "Task 2", "Task 3", "Task 4", "Task 5", "Task 6", "Task 7",
-    "Task 8", "Task 9", "Task 10", "Task 11", "Task 12", "Task 13", "Task 14",
-    "Task 15", "Task 16", "Task 17", "Task 18", "Task 19", "Task 20", "Task 21",
-    "Task 22", "Task 23", "Task 24", "Task 25", "Task 26", "Task 27", "Task 28",
-    "Task 29", "Task 30", "Task 31", "Task 32", "Task 33", "Task 34", "Task 35",
-    "Task 36", "Task 37", "Task 38", "Task 39", "Task 40", "Task 41", "Task 42",
-    "Task 43", "Task 44", "Task 45", "Task 46", "Task 47", "Task 48", "Task 49"
+    "Win w/o any teammates being eliminated in a team game", "Get 1,000,000 of anything", "Get 3 kills in any online competetive game", "Beat a medium difficulty game of minesweeper", "Roll for a random item in minecraft and go get it (applies to both teams)", "Beat any soulslike boss", "Win a team game of knight squad (best 2/3)",
+    "Beat a night of any FNAF game ", "Die in 3 distinct ways between 3 different games", "Craft an item with atleast 3 different ingredients", "Catch a fish", "Set yourself on fire", "Pet an animal", "Win a team brawl in super smash brothers (best 2/3)",
+    "Win a 4 player game of accelerated commander", "Win for your team the draft night merge game", "Travel to the nether in minecraft survival mode", "create a functioning "vehicle" in any game", "Get to hard difficulty in any risk of rain game", "complete test chamber 5 in a new run of any portal game", "be the victor for your team in any board game not already listed",
+    "get your team to floor 3 of spelunky, if you die rotate to other team", "get to a randomized item in eldenring. If you die, you must swap to another teammate (non-dlc)", "Win mariokart for your team (best 2/3)", "Cook any food item", "win for your team in stick fight the game (best 2/3)", "Win the super smash brothers turnament for your team", "win for your team ultimate chicken horse (best 2/3)",
+    "Survive through night 1 of elden ring: nightreign with no relics", "win for your team in any jackbox game best 2/3 must be two different games", "1v1 in genji pingpong.", "get a killstreak in any game", "perform a successful parry in any game (no executor does not count)", "reach the tallest point of the map/game", "win a game of streetbrawl, deadlock",
+    "Switch survival minecraft, 2v2. 15 minute prep. PVP.", "complete a puzzle in a non-portal game", "genuinely just do 50 pushups", "Win a game of mario party for your team", "each player on your team makes a paper airplane. The one that flys the longest distance wins", "Team Blackjack. First player to 5 wins for their team. (you must bet fractions of shots)",
+    "Team poker. First player to 3 wins for their team. (you must bet shots)", "win a game of Team pictionary.", "Build the tallest freestanding structure out of paper in 5 minutes.", "Obtain a legendary/gold rarity item in any game", "take this pokemon quiz https://www.pkmnquiz.com/ must complete atleast 100 total pokemon. OR a full generation with shadows enabled If you fail to within 10 minutes, you may only take it again after 5 minutes have passed", "name 100 games in 10 minutes. Must restart if fail. Cannot be numbered sequels but may be titled sequels. If fail. May only do again after 5 minutes have passed", "get 100wpm on a typing test OR win a game of final sentence",
+    "Beat any game on the arcade cabinet"
 ];
 
 // ==========================================
