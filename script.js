@@ -40,6 +40,7 @@ let myTeam = null;
 let currentBoardState = {};
 
 const gridContainer = document.getElementById('bingo-grid');
+const gridWrapper = document.getElementById('grid-wrapper');
 const teamModal = document.getElementById('team-modal');
 const scoreRedEl = document.getElementById('score-red');
 const scoreBlueEl = document.getElementById('score-blue');
@@ -65,7 +66,6 @@ function setTeam(team) {
 document.getElementById('btn-red').addEventListener('click', () => setTeam('red'));
 document.getElementById('btn-blue').addEventListener('click', () => setTeam('blue'));
 
-// Wire up the new Change Team button
 changeTeamBtn.addEventListener('click', () => {
     teamModal.classList.remove('hidden');
 });
@@ -123,3 +123,20 @@ onValue(boardRef, (snapshot) => {
 
 initializeGrid();
 checkTeam();
+
+// ==========================================
+// 4. PANZOOM (DRAG & PINCH-TO-ZOOM)
+// ==========================================
+// Ensure Panzoom is loaded before initializing
+window.addEventListener('load', () => {
+    const panzoom = Panzoom(gridContainer, {
+        maxScale: 2,         // How far they can zoom in
+        minScale: 0.3,       // How far they can zoom out (allows seeing whole grid)
+        step: 0.1,           // Zoom speed
+        startX: 0,           // Start anchored to left
+        startY: 0            // Start anchored to top
+    });
+
+    // Allow desktop users to zoom using their mouse wheel
+    gridWrapper.addEventListener('wheel', panzoom.zoomWithWheel);
+});
