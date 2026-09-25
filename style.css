@@ -10,20 +10,17 @@ body {
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    /* REMOVED overflow: hidden to allow scrolling and pinch-to-zoom */
+    height: 100vh; /* Lock height to window */
+    overflow: hidden; /* Prevent native scrolling, panzoom handles movement */
 }
 
 header {
     width: 100%;
-    /* Sticky positioning keeps the scoreboard visible when scrolling down */
-    position: sticky; 
-    top: 0;
-    z-index: 10;
-    background-color: #121212; /* Matches body so grid doesn't bleed through */
+    background-color: #121212;
     padding: 10px;
     border-bottom: 1px solid #333;
+    flex-shrink: 0; /* Prevents header from getting crushed */
+    z-index: 10;
 }
 
 .header-container {
@@ -56,10 +53,7 @@ header {
     padding: 0 5px;
 }
 
-#player-indicator { 
-    font-size: 0.9rem; 
-    color: #888; 
-}
+#player-indicator { font-size: 0.9rem; color: #888; }
 
 .small-btn {
     background-color: #333;
@@ -74,15 +68,16 @@ header {
 
 .small-btn:active { background-color: #555; }
 
-main {
+/* Grid Wrapper - Acts as the window you look through */
+#grid-wrapper {
     flex-grow: 1;
     width: 100%;
-    /* Allow native horizontal scrolling */
-    overflow-x: auto; 
-    padding: 15px;
-    display: flex;
-    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Hides parts of grid outside the window */
+    cursor: grab; /* Shows users they can drag */
 }
+
+#grid-wrapper:active { cursor: grabbing; }
 
 /* 7x7 Grid Setup */
 .grid-7x7 {
@@ -90,11 +85,10 @@ main {
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 6px;
-    /* Force a minimum size so squares aren't crushed on phones. 
-       This makes it horizontal-scrollable and pinch-zoomable! */
-    min-width: 700px; 
-    min-height: 700px;
-    max-width: 1000px; /* Caps how huge it gets on desktop */
+    padding: 15px;
+    min-width: 750px; 
+    min-height: 750px;
+    /* Removed center alignment so it naturally anchors top-left */
 }
 
 .bingo-square {
@@ -106,15 +100,14 @@ main {
     align-items: center;
     text-align: center;
     padding: 8px;
-    font-size: 0.85rem; /* Larger font now that it can scroll */
+    font-size: 0.85rem;
     cursor: pointer;
     user-select: none;
-    transition: background-color 0.2s, transform 0.1s;
-    overflow: hidden;
+    transition: background-color 0.2s;
     word-break: break-word;
 }
 
-.bingo-square:active { transform: scale(0.95); }
+.bingo-square:active { filter: brightness(0.8); }
 
 /* Claimed States */
 .bingo-square.red-claimed {
