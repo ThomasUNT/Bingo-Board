@@ -24,7 +24,7 @@ const POINTS_PER_SQUARE = 1; // Easily adjust point values here
 // Exactly 49 tasks for a 7x7 grid. 
 // They render Left -> Right, Top -> Bottom.
 const tasks = [
-    "Task 1", "Task 2", "Task 3", "Task 4", "Task 5", "Task 6", "Task 7",
+    "Clear any level in any game while one player controls the keyboard and another controls the mouse", "Task 2", "Task 3", "Task 4", "Task 5", "Task 6", "Task 7",
     "Task 8", "Task 9", "Task 10", "Task 11", "Task 12", "Task 13", "Task 14",
     "Task 15", "Task 16", "Task 17", "Task 18", "Task 19", "Task 20", "Task 21",
     "Task 22", "Task 23", "Task 24", "Task 25", "Task 26", "Task 27", "Task 28",
