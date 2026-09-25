@@ -39,14 +39,13 @@ const tasks = [
 let myTeam = null;
 let currentBoardState = {};
 
-// Elements
 const gridContainer = document.getElementById('bingo-grid');
 const teamModal = document.getElementById('team-modal');
 const scoreRedEl = document.getElementById('score-red');
 const scoreBlueEl = document.getElementById('score-blue');
 const playerIndicator = document.getElementById('player-indicator');
+const changeTeamBtn = document.getElementById('btn-change-team');
 
-// Handle Team Selection Memory
 function checkTeam() {
     const savedTeam = localStorage.getItem('bingoTeam');
     if (savedTeam) {
@@ -60,43 +59,42 @@ function setTeam(team) {
     myTeam = team;
     localStorage.setItem('bingoTeam', team);
     teamModal.classList.add('hidden');
-    playerIndicator.innerText = `You are playing for ${team.toUpperCase()} TEAM`;
+    playerIndicator.innerText = `Playing for ${team.toUpperCase()} TEAM`;
 }
 
 document.getElementById('btn-red').addEventListener('click', () => setTeam('red'));
 document.getElementById('btn-blue').addEventListener('click', () => setTeam('blue'));
 
-// Build the Grid HTML
+// Wire up the new Change Team button
+changeTeamBtn.addEventListener('click', () => {
+    teamModal.classList.remove('hidden');
+});
+
 function initializeGrid() {
-    gridContainer.innerHTML = ''; // Clear container
+    gridContainer.innerHTML = ''; 
     tasks.forEach((task, index) => {
         const square = document.createElement('div');
         square.classList.add('bingo-square');
         square.innerText = task;
-        square.dataset.index = index; // Store index for DB reference
+        square.dataset.index = index; 
         
         square.addEventListener('click', () => handleSquareClick(index));
         gridContainer.appendChild(square);
     });
 }
 
-// Handle Square Clicks
 function handleSquareClick(index) {
-    if (!myTeam) return; // Prevent clicks if team not selected
+    if (!myTeam) return; 
 
     const currentOwner = currentBoardState[index];
 
     if (currentOwner === myTeam) {
-        // Unclaim it if my team already owns it
         set(ref(db, `board/${index}`), null);
     } else if (!currentOwner) {
-        // Claim it if it's empty
         set(ref(db, `board/${index}`), myTeam);
     }
-    // If owned by opponent, do nothing (locked)
 }
 
-// Listen to Firebase Updates in Real-time
 onValue(boardRef, (snapshot) => {
     const data = snapshot.val() || {};
     currentBoardState = data;
@@ -107,7 +105,6 @@ onValue(boardRef, (snapshot) => {
     const squares = document.querySelectorAll('.bingo-square');
     
     squares.forEach((square, index) => {
-        // Reset classes
         square.classList.remove('red-claimed', 'blue-claimed');
         
         const owner = currentBoardState[index];
@@ -120,11 +117,9 @@ onValue(boardRef, (snapshot) => {
         }
     });
     
-    // Update Scoreboard
     scoreRedEl.innerText = `Red: ${redScore}`;
     scoreBlueEl.innerText = `Blue: ${blueScore}`;
 });
 
-// Start the App
 initializeGrid();
 checkTeam();
