@@ -18,12 +18,17 @@
 
     <!-- Main Game UI -->
     <header>
-        <div class="score-board">
-            <div id="score-red" class="score red-score">Red: 0</div>
-            <h1>BINGO</h1>
-            <div id="score-blue" class="score blue-score">Blue: 0</div>
+        <div class="header-container">
+            <div class="score-board">
+                <div id="score-red" class="score red-score">Red: 0</div>
+                <h1>BINGO</h1>
+                <div id="score-blue" class="score blue-score">Blue: 0</div>
+            </div>
+            <div class="header-bottom">
+                <div id="player-indicator">Loading...</div>
+                <button id="btn-change-team" class="small-btn">Change Team</button>
+            </div>
         </div>
-        <div id="player-indicator"></div>
     </header>
 
     <main>
@@ -32,7 +37,6 @@
         </div>
     </main>
 
-    <!-- Load script as a module so Firebase works via CDN -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
