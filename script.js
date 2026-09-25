@@ -70,6 +70,8 @@ changeTeamBtn.addEventListener('click', () => {
     teamModal.classList.remove('hidden');
 });
 
+// Replace your entire initializeGrid() function with this updated version:
+
 function initializeGrid() {
     gridContainer.innerHTML = ''; 
     tasks.forEach((task, index) => {
@@ -78,7 +80,27 @@ function initializeGrid() {
         square.innerText = task;
         square.dataset.index = index; 
         
-        square.addEventListener('click', () => handleSquareClick(index));
+        // --- NEW CLICK VS DRAG LOGIC ---
+        let startX, startY;
+        
+        // When mouse/finger goes down, record the starting coordinates
+        square.addEventListener('pointerdown', (e) => {
+            startX = e.clientX;
+            startY = e.clientY;
+        });
+
+        // When mouse/finger goes up, check how far they moved
+        square.addEventListener('pointerup', (e) => {
+            const diffX = Math.abs(e.clientX - startX);
+            const diffY = Math.abs(e.clientY - startY);
+            
+            // If they moved less than 5 pixels, it was a tap/click. 
+            // If they moved more, they were dragging the camera!
+            if (diffX < 5 && diffY < 5) {
+                handleSquareClick(index);
+            }
+        });
+        
         gridContainer.appendChild(square);
     });
 }
