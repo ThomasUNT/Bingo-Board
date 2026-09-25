@@ -83,12 +83,17 @@ header {
 .grid-7x7 {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr); /* Forces rows to match columns */
     gap: 6px;
     padding: 15px;
-    min-width: 750px; 
-    min-height: 750px;
-    /* Removed center alignment so it naturally anchors top-left */
+    
+    /* Lock the grid into a perfect square. 
+       The Panzoom library handles shrinking this to fit phone screens! */
+    width: 800px; 
+    height: 800px;
+    
+    /* Centers the grid within the wrapper if they zoom far out */
+    margin: 0 auto; 
 }
 
 .bingo-square {
